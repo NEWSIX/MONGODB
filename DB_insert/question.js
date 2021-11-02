@@ -111,7 +111,45 @@ for (let i = 0; i < Object.keys(questions).length; i++) {
     });
 }
 
+var mycollection = "movie";
 
+
+var data = [
+  { _id : 01 
+    ,name: "阿yueyue"
+    ,date: "1995年6月17日"
+    ,age:26
+    ,pic:"https://p2.music.126.net/X-cZXMriax_IRAkKWTOozg==/109951165575050379.jpg"
+  },
+  { _id : 02 
+    ,name: "Rira Ikuta"
+    ,date: "September 25, 2000"
+    ,age:21
+    ,pic:"https://cdn.myanimelist.net/images/voiceactors/3/63662.jpg"
+  },
+  { _id : 03 
+    ,name: "Aimyon"
+    ,date: "March 6, 1995"
+    ,age:26
+    ,pic:"https://i.pinimg.com/550x/4e/28/f3/4e28f35748960c013b6e5e92bc6641ae.jpg"
+  }
+];
+
+
+for (let i = 0; i < Object.keys(data).length; i++) {
+    //console.log(myobj[i])
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db(mydatabase);  
+            dbo.collection(mycollection).insertOne(data[i], function(err, res) {
+                if (err) throw err;
+                console.log("\n\n1 document inserted\n\n");
+                db.close();
+            });            
+         
+        
+    });
+}
         
 
 //module.exports = router;
