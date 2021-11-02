@@ -41,14 +41,18 @@ router.get('/', function(req, res, next) {
   MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db(mydatabase);
-      dbo.collection(mycollection).findOne({}, function(err, result) {
+      var query = { name:/.*m*/};
+      dbo.collection(mycollection).find(query).toArray(function(err, result) {
         if (err) throw err;
-        console.log(result);
+        var dataResult = result[1];
+        console.log(dataResult);
         db.close();
         res.render('db', 
             { title: '你爱我吗？' 
-            ,db_name: result.name
-            ,db_age: result.age
+            ,db_name: dataResult.name
+            ,db_age: dataResult.age
+            ,db_date:dataResult.date
+            ,db_pic:dataResult.pic
             });
         });
      });

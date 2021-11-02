@@ -2,17 +2,17 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
 var mydatabase = "thesisDB";
-var mycollection = "questions";
+var mycollection = "movie";
 
 
 
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db(mydatabase);
-    var query = { answer:/.*m*/};
+    var query = { name:/.*m*/};
     dbo.collection(mycollection).find(query).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result[0].question);
+      console.log(result[0]);
       db.close();
     });
   });
