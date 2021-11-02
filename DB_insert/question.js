@@ -112,7 +112,7 @@ for (let i = 0; i < Object.keys(questions).length; i++) {
     });
 }
 
-var mycollection = "movie";
+//var mycollection = "movie";
 
 
 var data = [
@@ -142,7 +142,7 @@ for (let i = 0; i < Object.keys(data).length; i++) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(mydatabase);  
-            dbo.collection(mycollection).insertOne(data[i], function(err, res) {
+            dbo.collection("movie").insertOne(data[i], function(err, res) {
                 if (err) throw err;
                 console.log("\n\n1 document inserted\n\n");
                 db.close();
